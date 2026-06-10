@@ -1,0 +1,27 @@
+name: 61 - GitHub Script
+# This workflow shows how to use 'actions/github-script' for complex automation.
+# Exam Tip: 'github-script' gives you a pre-authenticated 'github' object (octokit).
+
+on:
+  workflow_dispatch:
+
+permissions:
+  issues: write
+
+jobs:
+  script:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            const { owner, repo } = context.repo;
+            const issue = await github.rest.issues.create({
+              owner,
+              repo,
+              title: 'Script-generated Issue',
+              body: 'This was created using actions/github-script!'
+            });
+            console.log(`Created issue: ${issue.data.html_url}`);

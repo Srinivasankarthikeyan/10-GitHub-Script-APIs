@@ -1,0 +1,30 @@
+name: 67 - Merge Automation
+# This workflow demonstrates how to automatically merge a PR.
+# Exam Tip: Use this with caution! Ensure all status checks have passed first.
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    if: github.event.review.state == 'approved'
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - name: Merge PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              merge_method: 'squash'
+            })

@@ -1,0 +1,23 @@
+name: 65 - Comment on PR Automatically
+# This workflow comments on a PR when it is opened.
+# Exam Tip: Use the 'pull_request' trigger and 'github-script' for PR automation.
+
+on:
+  pull_request:
+    types: [opened]
+
+jobs:
+  pr-comment:
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Thanks for opening this Pull Request! Our CI is starting to process your changes.'
+            })
