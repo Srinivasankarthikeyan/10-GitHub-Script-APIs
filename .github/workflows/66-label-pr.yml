@@ -12,9 +12,11 @@ jobs:
       pull-requests: write
       contents: read
     steps:
+      - uses: actions/checkout@v4
+
       - uses: actions/labeler@v5
         with:
-          # Configuration is typically in .github/labeler.yml
+          # Reads labels from .github/labeler.yml in this repository
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
           

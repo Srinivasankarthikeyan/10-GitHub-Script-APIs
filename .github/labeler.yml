@@ -1,0 +1,6 @@
+documentation:
+  - '**/*.md'
+
+yaml-workflow:
+  - '**/*.yml'
+  - '**/*.yaml'
