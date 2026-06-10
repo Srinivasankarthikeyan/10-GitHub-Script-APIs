@@ -1,0 +1,9 @@
+documentation:
+  - changed-files:
+    - any-glob-to-any-file: '**/*.md'
+
+yaml-workflow:
+  - changed-files:
+    - any-glob-to-any-file:
+      - '**/*.yml'
+      - '**/*.yaml'
