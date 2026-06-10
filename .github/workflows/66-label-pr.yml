@@ -16,7 +16,7 @@ jobs:
 
       - uses: actions/labeler@v5
         with:
-          # Reads labels from .github/labeler.yml in this repository
+          # Configuration is typically in .github/labeler.yml
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           sync-labels: true
           
